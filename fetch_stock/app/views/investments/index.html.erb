@@ -1,0 +1,38 @@
+<div class="span12">
+<div class="investment">
+<%= link_to("New investment", new_investment_path , :class => "btn btn-mini btn-primary pull-right" ) %>
+</div>
+<table class="table">
+ <thead>
+ <tr>
+ <td> # </td>
+ <td> Title </td>
+ <td> Description </td>
+ <td> Owner </td>
+ </tr>
+ </thead>
+
+ <tbody>
+ <% if current_user != nil 
+       current_user.investments.each do |investment| 
+  %>
+ <tr>
+ <td> <%= investment.id %> </td>
+ <td> <%= link_to(investment.title, investment_path(investment)) %> </td>
+ <td> <%= investment.description %> </td>
+ <td> <%= investment.owner.name %> </td>
+
+
+ <% if current_user && investment.editable_by?(current_user) %>
+  <td> <%= link_to("Edit", edit_investment_path(investment), :class => "btn btn-mini") %>
+  <%= link_to("Delete", investment_path(investment), :class => "btn btn-mini", :method => :delete, :confirm => "Are you sure?" ) %>
+ <% end %>
+
+ </td>
+ </tr>
+ <% end %>
+ <% end %>
+ </tbody>
+ </table>
+
+ </div>

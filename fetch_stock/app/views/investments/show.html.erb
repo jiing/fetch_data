@@ -1,0 +1,47 @@
+<div class="span12">
+
+ <div class="investment pull-right">
+ <% if current_user && @investment.editable_by?(current_user) %> 
+   <%= link_to("Edit", edit_investment_path(@investment) , :class => "btn btn-mini btn-primary pull-right" ) %>
+ <% end %>
+
+ <%= link_to("New Item", new_investment_item_path(@investment), :class => "btn btn-mini btn-primary") if current_user %>
+ &nbsp;
+ </div>
+
+ <h2> <%= @investment.title %> </h2>
+
+ <p> <%= @investment.description %> </p>
+
+ <table class="table">
+<table class="table">
+ <thead>
+ <tr>
+   <td> Symbol </td>
+   <td> Name </td>
+   <td> Stock Type </td>
+   <td> Value </td>
+   <td> Coin Type </td>
+   <td> Time </td>
+ </tr>
+ </thead>
+
+ <tbody>
+ <% @items.order("updated_at DESC").each do |item| %>
+ <tr>
+ <td> <%= item.symbol %> </td>
+ <td> <%= item.name %> </td>
+ <td> <%= item.stock_type %> </td>
+ <td> <%= item.value %> </td>
+ <td> <%= item.coin_type %> </td>
+ <td> <%= item.time %> </td>
+
+ <% if current_user && item.editable_by?(current_user) %>
+ <td> <%= link_to("Edit", edit_investment_item_path(item.investment, item), :class => "btn btn-mini")%>
+ <%= link_to("Delete", investment_item_path(item.investment, item), :class => "btn btn-mini", :method => :delete, :confirm => "Are you sure?" ) %> </td>
+ </tr>
+ <% end %>
+ <% end %>
+ </tbody>
+ </table>
+</div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  symbol: MyString
+  name: MyString
+  type: 
+  value: 9.99
+  coin_type: MyString
+  investment_id: MyString
+  integer: MyString
+  time: 2014-11-10 04:59:42
+
+two:
+  symbol: MyString
+  name: MyString
+  type: 
+  value: 9.99
+  coin_type: MyString
+  investment_id: MyString
+  integer: MyString
+  time: 2014-11-10 04:59:42
